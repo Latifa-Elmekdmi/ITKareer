@@ -44,6 +44,20 @@ public class Client extends User implements Serializable{
 
 	public Client(String firstName, String lastName, String phoneNumber, String photo, Account account) {
 		super(firstName, lastName, phoneNumber, photo, account);
+	}
+
+	public Client(String firstName, String lastName, String phoneNumber) {
+		super(firstName, lastName, phoneNumber);
+	}
+
+	public Client() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public Client(String firstName, String lastName, String phoneNumber, Collection<Engagement> engagements) {
+		super(firstName, lastName, phoneNumber);
+		this.engagements = engagements;
 	} 
 	
 	

@@ -108,6 +108,16 @@ public class Coach extends User implements Serializable{
 		return "Coach [profileSummary=" + profileSummary + ", education=" + education + "]";
 	}
 
+	public Coach(String firstName, String lastName, String phoneNumber, String profileSummary, String education,
+			String experience, Collection<Engagement> engagements, Collection<Pack> packs) {
+		super(firstName, lastName, phoneNumber);
+		this.profileSummary = profileSummary;
+		this.education = education;
+		this.experience = experience;
+		this.engagements = engagements;
+		this.packs = packs;
+	}
+	
 	
 	
 

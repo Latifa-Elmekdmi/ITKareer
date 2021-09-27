@@ -27,9 +27,7 @@ public class Engagement implements Serializable{
 	@ManyToOne @JoinColumn(name = "Coach_Id")
 	private Coach coach; 
 	
-	public Engagement() {
-		super();
-	}
+
 	public Engagement(String engagemetnTitle, Date schedule, com.platform.Entity.Pack package1,
 			String engagementStatus) {
 		super();
@@ -69,6 +67,31 @@ public class Engagement implements Serializable{
 		this.engagementStatus = engagementStatus;
 	} 
 	
+	public Engagement() {
+		super();
+	}
 	
+	public Engagement(Long engagementId, String engagemetnTitle, Date schedule, com.platform.Entity.Pack pack,
+			String engagementStatus, Client client, Coach coach) {
+		super();
+		this.engagementId = engagementId;
+		this.engagemetnTitle = engagemetnTitle;
+		this.schedule = schedule;
+		Pack = pack;
+		this.engagementStatus = engagementStatus;
+		this.client = client;
+		this.coach = coach;
+	}
+	public Engagement(String engagemetnTitle, Date schedule, com.platform.Entity.Pack pack, String engagementStatus,
+			Client client, Coach coach) {
+		super();
+		this.engagemetnTitle = engagemetnTitle;
+		this.schedule = schedule;
+		Pack = pack;
+		this.engagementStatus = engagementStatus;
+		this.client = client;
+		this.coach = coach;
+	}
+
 	
 }

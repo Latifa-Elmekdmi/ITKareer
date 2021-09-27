@@ -42,6 +42,11 @@ public class Program implements Serializable{
 		this.programDescription = programDescription;
 		this.packs = packs;
 	}
+	public Program(String programName, String programDescription) {
+		super();
+		this.programName = programName;
+		this.programDescription = programDescription;
+	}
 	
 	
 	

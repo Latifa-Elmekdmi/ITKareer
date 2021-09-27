@@ -113,6 +113,17 @@ public class Pack implements Serializable{
 
 	public Pack() {
 		super();
+	}
+
+	public Pack(String packageName, String packageDetails, int sessions, int hours, double packagePrice,
+			Program program) {
+		super();
+		this.packageName = packageName;
+		this.packageDetails = packageDetails;
+		this.sessions = sessions;
+		this.hours = hours;
+		this.packagePrice = packagePrice;
+		this.program = program;
 	} 
 	
 	
