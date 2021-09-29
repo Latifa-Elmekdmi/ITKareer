@@ -10,7 +10,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Engagements</title>
+    <title>Dashboard</title>
 
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet"
@@ -54,7 +54,7 @@
 
         <!-- Nav Item - Pages Collapse Menu -->
         <li class="nav-item"><a class="nav-link"
-                                th:href="@{/coach/engagements}"> <i class="fas fa-fw fa-handshake"></i>
+                                th:href="@{/engagements}"> <i class="fas fa-fw fa-handshake"></i>
             <span>Engagements</span>
         </a></li>
 
@@ -77,8 +77,8 @@
         </a></li>
 
         <!-- Nav Item - Tables -->
-        <li class="nav-item"><a class="nav-link" th:href="@{/reports}">
-            <i class="fas fa-fw fa-table"></i> <span>Reports</span>
+        <li class="nav-item"><a class="nav-link" th:href="@{/}">
+            <i class="fas fa-fw fa-table"></i> <span>Dashboard</span>
         </a></li>
         <!-- Nav Item - Tables -->
         <li class="nav-item"><a class="nav-link" th:href="@{/settings}">
@@ -106,7 +106,7 @@
                 </button>
 
                 <!-- Topbar Search -->
-                <h1 class="h3 mb-0 text-gray-800">Engagements</h1>
+                <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
 
                 <!-- Topbar Navbar -->
                 <ul class="navbar-nav ml-auto">
@@ -296,7 +296,7 @@
                 <div
                         class="d-sm-flex align-items-center justify-content-between mb-4">
 
-                    <form th:action="@{/engagements}" method="get"
+                    <form th:action="@{/Dashboard}" method="get"
                           class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                         <div class="input-group">
                             <input type="text" class="form-control bg-light border-0 small"
@@ -317,7 +317,7 @@
                             class="fas fa-download fa-plus text-white-50"></i> Create new</a>
 
                     <div class="myForm">
-                        <form th:action="@{/engagements/save}" method="post">
+                        <form th:action="@{/Dashboard/save}" method="post">
                             <div class="modal fade" th:id="*{'exampleModal'}" tabindex="-1"
                                  aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog">
@@ -384,13 +384,13 @@
                         <th>Date of Engagement</th>
                         <th>Engagement Status</th>
                     </tr>
-                    <tr th:each="eng:${engagements}">
+                    <tr th:each="eng:${Dashboard}">
                         <td th:text="${eng.engagementTitle}"></td>
 
                         
 
                         <td th:text="${eng.schedule}"></td>
-                        <td th:text="${eng.engagementStatus}"></td>
+                        <td th:text="${eng.Dashboardtatus}"></td>
                         <td th:text="${eng.client.idClient}"></td>
                         <td th:text="${eng.coach.idCoach}"></td>
 
@@ -400,7 +400,7 @@
                 <ul class="nav nav-pills">
                     <li th:class="${currentPage==status.index}?'bg-info':' '"
                         th:each="page,status:${pages}">
-                        <a th:href="@{/engagements(page=${status.index},motCle=${motCle})}"
+                        <a th:href="@{/Dashboard(page=${status.index},motCle=${motCle})}"
                            th:text="${status.index}"></a>
                     </li>
                 </ul>

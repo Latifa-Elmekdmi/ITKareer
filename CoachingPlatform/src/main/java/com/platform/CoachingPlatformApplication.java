@@ -63,16 +63,7 @@ public class CoachingPlatformApplication  implements CommandLineRunner{
 		 programRepository.save(pr2);
 		 programRepository.save(pr3);
 		 
-		 //**********************************************************************************************************
-		 Pack pack = new Pack("6 months leadership program tailored for women", pr2.getProgramDescription(), 24, 48, 2800.00, pr2);
-		 Pack pack1 = new Pack("RiseUp - Career focus", pr3.getProgramDescription(), 14, 28, 1500.00, pr3);
-		 Pack pack2 = new Pack("Executive Coaching", pr1.getProgramDescription(), 10, 30, 2000.00, pr1);
-		 Pack pack3 = new Pack("Personality ", pr.getProgramDescription(), 5, 10, 1200.00, pr);
-		 
-		 packRepository.save(pack);
-		 packRepository.save(pack1);
-		 packRepository.save(pack2);
-		 packRepository.save(pack3);
+
 		 //**********************************************************************************************************
 				 
 		Coach coach = new Coach("Joi", "Whithmore", "0762701124", "I have made my career as an IT Professional in the Web Design and Development field. For the past decade it has been my goal and passion to work with digital technology in an intuitive and supportive manner.","digital technology, organic SEO training,powerful brand development and creative content marketing ");
@@ -85,37 +76,47 @@ public class CoachingPlatformApplication  implements CommandLineRunner{
 		coachRepository.save(coach1);
 		coachRepository.save(coach2);
 		coachRepository.save(coach3);
-		//**********************************************************************************************************
-		
-				Engagement eng =new Engagement("Engagement NO 1", new Date(), pack, "IN PROGRESS");
-				Engagement eng1 =new Engagement("Engagement NO 2", new Date(), pack1, "IN PROGRESS");
-				Engagement eng2 =new Engagement("Engagement NO 3", new Date(), pack2, "IN PROGRESS");
-				Engagement eng3 =new Engagement("Engagement NO 4", new Date(), pack3, "IN PROGRESS");
-				
-				engagementRepository.save(eng);
-				engagementRepository.save(eng1);
-				engagementRepository.save(eng2);
-				engagementRepository.save(eng3);
 		 //**********************************************************************************************************
-				ArrayList<Engagement> listOfCl = new ArrayList<Engagement>();
-				ArrayList<Engagement> listOfCl1 = new ArrayList<Engagement>();
-				ArrayList<Engagement> listOfCl2 = new ArrayList<Engagement>();
-				ArrayList<Engagement> listOfCl3 = new ArrayList<Engagement>();
-				listOfCl1.add(eng);
-				listOfCl1.add(eng3);
-				listOfCl.add(eng);
-				listOfCl2.add(eng1);
-				listOfCl2.add(eng3);
-				listOfCl3.add(eng2);
-		Client client = new Client("Latifa", "elmekdmi", "0762701129", listOfCl);
-		Client client1 = new Client("Hajar", "jmouhi", "0674719960", listOfCl1);
-		Client client2 = new Client("Ali", "alaoui", "0677485962", listOfCl2);
-		Client client3 = new Client("Mohamed", "Nour", "074719960", listOfCl3);
+		 Pack pack = new Pack("6 months leadership program tailored for women", pr2.getProgramDescription(), 24, 48, 2800.00, pr2,coach);
+		 Pack pack1 = new Pack("RiseUp - Career focus", pr3.getProgramDescription(), 14, 28, 1500.00, pr3,coach1);
+		 Pack pack2 = new Pack("Executive Coaching", pr1.getProgramDescription(), 10, 30, 2000.00, pr1,coach2);
+		 Pack pack3 = new Pack("Personality ", pr.getProgramDescription(), 5, 10, 1200.00, pr,coach3);
+		 
+		 packRepository.save(pack);
+		 packRepository.save(pack1);
+		 packRepository.save(pack2);
+		 packRepository.save(pack3);
+		 //**********************************************************************************************************
+//				ArrayList<Engagement> listOfCl = new ArrayList<Engagement>();
+//				ArrayList<Engagement> listOfCl1 = new ArrayList<Engagement>();
+//				ArrayList<Engagement> listOfCl2 = new ArrayList<Engagement>();
+//				ArrayList<Engagement> listOfCl3 = new ArrayList<Engagement>();
+//				listOfCl1.add(eng);
+//				listOfCl1.add(eng3);
+//				listOfCl.add(eng);
+//				listOfCl2.add(eng1);
+//				listOfCl2.add(eng3);
+//				listOfCl3.add(eng2);
+		Client client = new Client("Latifa", "elmekdmi", "0762701129");
+		Client client1 = new Client("Hajar", "jmouhi", "0674719960");
+		Client client2 = new Client("Ali", "alaoui", "0677485962");
+		Client client3 = new Client("Mohamed", "Nour", "074719960");
 		
 		clientRepository.save(client);
 		clientRepository.save(client1);
 		clientRepository.save(client2);
 		clientRepository.save(client3);
+		//**********************************************************************************************************
+		
+		Engagement eng = new Engagement("Engagement NO 1", new Date(),"IN PROGRESS",client1,coach,pack);
+		Engagement eng1 =new Engagement("Engagement NO 2", new Date(), "IN PROGRESS",client2,coach1, pack1);
+		Engagement eng2 =new Engagement("Engagement NO 3", new Date(), "IN PROGRESS",client,coach2, pack2);
+		Engagement eng3 =new Engagement("Engagement NO 4", new Date(), "IN PROGRESS",client3,coach3, pack3);
+		
+		engagementRepository.save(eng);
+		engagementRepository.save(eng1);
+		engagementRepository.save(eng2);
+		engagementRepository.save(eng3);
 		
 		 
 		

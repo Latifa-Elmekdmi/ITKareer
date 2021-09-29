@@ -6,5 +6,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import com.platform.Entity.Engagement;
 
 public interface EngagementRepository extends JpaRepository<Engagement, Long> {
-	public Page<Engagement> findByEngagemetnTitleContains(String engagementTitle, Pageable pageable);
+	public Page<Engagement> findByEngagementTitleContains(String engagementTitle, Pageable pageable);
+	//public List<Engagement> findBy
 }

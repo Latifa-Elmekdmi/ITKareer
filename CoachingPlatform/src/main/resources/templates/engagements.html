@@ -387,11 +387,12 @@
                     <tr th:each="eng:${engagements}">
                         <td th:text="${eng.engagementTitle}"></td>
 
-                        <td th:text="${eng.client.firstName}"></td>
-                        <td th:text="${eng.coach.firstName}"></td>
+                        
 
                         <td th:text="${eng.schedule}"></td>
                         <td th:text="${eng.engagementStatus}"></td>
+                        <td th:text="${eng.client.idClient}"></td>
+                        <td th:text="${eng.coach.idCoach}"></td>
 
                     </tr>
 
