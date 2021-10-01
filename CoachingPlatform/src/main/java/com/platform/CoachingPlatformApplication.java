@@ -1,5 +1,6 @@
 package com.platform;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -8,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.ComponentScan;
 
 import com.platform.Entity.Client;
 import com.platform.Entity.Coach;
@@ -20,8 +22,10 @@ import com.platform.dao.EngagementRepository;
 import com.platform.dao.PackRepository;
 import com.platform.dao.ProgramRepository;
 import com.platform.dao.UserRepository;
+import com.platform.web.ResourcesController;
 
 @SpringBootApplication
+//@ComponentScan({"com.platform","com.platform.web"})
 public class CoachingPlatformApplication  implements CommandLineRunner{
 	@Autowired
 	private ClientRepository clientRepository ; 
@@ -38,6 +42,7 @@ public class CoachingPlatformApplication  implements CommandLineRunner{
 	
 	public static void main(String[] args) {
 		SpringApplication.run(CoachingPlatformApplication.class, args);
+		//new File(ResourcesController.uploadDirectory).mkdir();
 	}
 
 	@Override
