@@ -5,6 +5,8 @@ import java.util.*;
 
 import javax.persistence.*;
 
+import lombok.NoArgsConstructor;
+@NoArgsConstructor
 @Entity
 @PrimaryKeyJoinColumn(name = "userId")
 public class Coach extends User implements Serializable{
@@ -24,10 +26,7 @@ public class Coach extends User implements Serializable{
 	@OneToMany(mappedBy = "coach")
 	private Collection<Report> reportes;
 	
-	public Coach() {
-		super();
-	}
-
+	
 	public String getProfileSummary() {
 		return profileSummary;
 	}
@@ -84,10 +83,10 @@ public class Coach extends User implements Serializable{
 		this.reportes = reportes;
 	}
 
-	public Coach(String firstName, String lastName, String phoneNumber, String photo, Account account,
+	public Coach(String firstName, String lastName, String phoneNumber, String photo,
 			String profileSummary, String education, String experience, Collection<Engagement> engagements,
 			Collection<Pack> packs, Collection<Resource> resources, Collection<Report> reportes) {
-		super(firstName, lastName, phoneNumber, photo, account);
+		super(firstName, lastName, phoneNumber, photo);
 		this.profileSummary = profileSummary;
 		this.education = education;
 		this.experience = experience;

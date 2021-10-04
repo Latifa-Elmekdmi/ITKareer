@@ -7,7 +7,10 @@ import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
+
+import lombok.NoArgsConstructor;
 @Entity
+@NoArgsConstructor
 @PrimaryKeyJoinColumn(name = "userId")
 public class Client extends User implements Serializable{
 	
@@ -35,30 +38,29 @@ public class Client extends User implements Serializable{
 		this.orders = orders;
 	}
 
-	public Client(String firstName, String lastName, String phoneNumber, String photo, Account account,
+	public Client(String firstName, String lastName, String phoneNumber, String photo,
 			Collection<Engagement> engagements, Collection<Command> orders) {
-		super(firstName, lastName, phoneNumber, photo, account);
+		super(firstName, lastName, phoneNumber, photo);
 		this.engagements = engagements;
 		this.orders = orders;
 	}
 
-	public Client(String firstName, String lastName, String phoneNumber, String photo, Account account) {
-		super(firstName, lastName, phoneNumber, photo, account);
+	public Client(String firstName, String lastName, String phoneNumber, String photo) {
+		super(firstName, lastName, phoneNumber, photo);
 	}
 
 	public Client(String firstName, String lastName, String phoneNumber) {
 		super(firstName, lastName, phoneNumber);
 	}
 
-	public Client() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
+	
 
 	public Client(String firstName, String lastName, String phoneNumber, Collection<Engagement> engagements) {
 		super(firstName, lastName, phoneNumber);
 		this.engagements = engagements;
-	} 
+	}
+
+	 
 	
 	
 	

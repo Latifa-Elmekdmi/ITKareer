@@ -1,12 +1,26 @@
 package com.platform.Entity;
 
 import java.io.Serializable;
+import java.util.Collection;
+import java.util.Collections;
 
 import javax.persistence.*;
 
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+@Getter
+@Setter
+@EqualsAndHashCode
+@NoArgsConstructor
 @Entity 
 @Inheritance(strategy = InheritanceType.JOINED)
-public abstract class User implements Serializable {
+public  class User implements Serializable, UserDetails {
 			
 @Id
 @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,14 +31,26 @@ private String firstName;
 private String lastName;
 @Column(length = 14)
 private String phoneNumber;
+private String email;
+private String password;
 
-@OneToOne
-@JoinColumn(name = "Account_Id")
-private Account account;
+private UserRole userRole;
 
 @Lob
 private String photo;
+private Boolean locked = false;
+private Boolean enabled = false;
 
+
+
+public User(String firstName, String lastName, String phoneNumber, String email, String password) {
+	super();
+	this.firstName = firstName;
+	this.lastName = lastName;
+	this.phoneNumber = phoneNumber;
+	this.email = email;
+	this.password = password;
+}
 
 public User(String firstName, String lastName, String phoneNumber) {
 	super();
@@ -32,53 +58,61 @@ public User(String firstName, String lastName, String phoneNumber) {
 	this.lastName = lastName;
 	this.phoneNumber = phoneNumber;
 }
-public User(String firstName, String lastName, String phoneNumber, String photo,Account account) {
+public User(String firstName, String lastName, String phoneNumber, String photo) {
 	super();
 	this.firstName = firstName;
 	this.lastName = lastName;
 	this.phoneNumber = phoneNumber;
 	this.photo = photo;
-	this.account = account; 
-}
-public User() {
-	super();
-}
-public Long getUserId() {
-	return userId;
-}
-public void setUserId(Long userId) {
-	this.userId = userId;
-}
-public String getFirstName() {
-	return firstName;
-}
-public void setFirstName(String firstName) {
-	this.firstName = firstName;
-}
-public String getLastName() {
-	return lastName;
-}
-public void setLastName(String lastName) {
-	this.lastName = lastName;
-}
-public String getPhoneNumber() {
-	return phoneNumber;
-}
-public void setPhoneNumber(String phoneNumber) {
-	this.phoneNumber = phoneNumber;
+
 }
 
-public String getPhoto() {
-	return photo;
+
+@Override
+public Collection<? extends GrantedAuthority> getAuthorities() {
+	 SimpleGrantedAuthority authority =
+             new SimpleGrantedAuthority(userRole.name());
+     return Collections.singletonList(authority);
 }
-public void setPhoto(String photo) {
-	this.photo = photo;
+@Override
+public String getUsername() {
+	// TODO Auto-generated method stub
+	return email;
 }
-public Account getAccount() {
-	return account;
+@Override
+public boolean isAccountNonExpired() {
+	// TODO Auto-generated method stub
+	return true;
 }
-public void setAccount(Account account) {
-	this.account = account;
+@Override
+public boolean isAccountNonLocked() {
+	// TODO Auto-generated method stub
+	return !locked;
+}
+@Override
+public boolean isCredentialsNonExpired() {
+	// TODO Auto-generated method stub
+	return true;
+}
+@Override
+public boolean isEnabled() {
+	// TODO Auto-generated method stub
+	return enabled;
+}
+
+@Override
+public String getPassword() {
+	// TODO Auto-generated method stub
+	return password;
+}
+
+public User(String firstName, String lastName, String email, String password, UserRole role) {
+	super();
+	this.firstName = firstName;
+	this.lastName = lastName;
+	this.email = email;
+	this.password = password;
+	this.userRole = role;
 }
 
 

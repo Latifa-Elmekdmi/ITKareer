@@ -26,4 +26,5 @@ public class ClientController {
 		Page<Client> clients = clientRepository.findAll(PageRequest.of(page, 5));
 		return "clients";
 	}
+	
 }
