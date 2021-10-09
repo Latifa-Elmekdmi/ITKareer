@@ -18,7 +18,7 @@ public class RegistrationService {
 
     private final UserService UserService;
     private final EmailValidator emailValidator;
-    private final com.platform.token.ConfirmationTokenService confirmationTokenService  ;
+  
     private final EmailSender emailSender;
 
     public String register(RegistrationRequest request) {
@@ -30,38 +30,24 @@ public class RegistrationService {
             throw new IllegalStateException("email not valid");
         }
 
-      String token = UserService.signUpUser(new User(request.getFirstName(), request.getLastName(), request.getEmail(), request.getPassword(), UserRole.USER));
+      String token = UserService.signUpUser(
+    		  new User(request.getFirstName(), 
+    				  request.getLastName(), 
+    				  request.getEmail(), 
+    				  request.getPassword(), 
+    				  UserRole.USER));
 
-        String link = "http://localhost:808/registration/confirm?token=" + token;
+        String link = "http://localhost:8084/registration/confirm?token=" + token;
         emailSender.send(
                 request.getEmail(),
                 buildEmail(request.getFirstName(), link));
 
         return token;
     }
+    
 
-    @Transactional
-    public String confirmToken(String token) {
-        ConfirmationToken confirmationToken = confirmationTokenService
-                .getToken(token)
-                .orElseThrow(() ->
-                        new IllegalStateException("token not found"));
-
-        if (confirmationToken.getConfirmedAt() != null) {
-            throw new IllegalStateException("email already confirmed");
-        }
-
-        LocalDateTime expiredAt = confirmationToken.getExpiresAt();
-
-        if (expiredAt.isBefore(LocalDateTime.now())) {
-            throw new IllegalStateException("token expired");
-        }
-
-        confirmationTokenService.setConfirmedAt(token);
-        UserService.enableAppUser(
-                confirmationToken.getUser().getEmail());
-        return "confirmed";
-    }
+    	
+   
 
     private String buildEmail(String name, String link) {
         return "<div style=\"font-family:Helvetica,Arial,sans-serif;font-size:16px;margin:0;color:#0b0c0c\">\n" +
